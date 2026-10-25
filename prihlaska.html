@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>Přihláška online — ZO OS KOVO Tréves</title>
+<meta name="description" content="Vyplň a podepiš přihlášku do ZO OS KOVO Tréves online — za pár minut, přímo z mobilu.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.ostreves.cz/prihlaska.html">
+<meta property="og:title" content="Přihláška online — ZO OS KOVO Tréves">
+<meta property="og:description" content="Základní organizace OS KOVO ve firmě Tréves CZ s.r.o. Hájíme zaměstnance a vyjednáváme lepší podmínky.">
+<meta property="og:image" content="https://www.ostreves.cz/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --red:#C8102E;--red-dark:#9B0A22;--ink:#1A1C1E;--steel:#41494F;
+    --concrete:#E7E4DD;--paper:#F5F3EF;--paper-2:#FBFAF7;--line:#CBC8C0;
+    --line-soft:#DEDBD3;--amber:#E8B000;--maxw:880px;--pad:clamp(20px,5vw,56px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{font-family:'Barlow',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.cond{font-family:'Barlow Condensed','Barlow',sans-serif;line-height:1.02;text-transform:uppercase;letter-spacing:.01em}
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+
+  header{background:var(--paper);border-bottom:2px solid var(--ink)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+  .brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .brand .cog{width:28px;height:28px;color:var(--red)}
+  .brand .name{font-family:'Barlow Condensed';font-weight:700;font-size:19px;text-transform:uppercase;letter-spacing:.04em;line-height:.95}
+  .brand .name small{display:block;font-size:10px;font-weight:600;letter-spacing:.18em;color:var(--steel)}
+  .back{font-family:'Barlow Condensed';font-weight:600;font-size:15px;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;color:var(--steel)}
+  .back:hover{color:var(--ink)}
+
+  .top{background:var(--red);color:#fff;border-bottom:5px solid var(--ink)}
+  .top .wrap{padding-block:clamp(34px,6vw,56px)}
+  .top .eyebrow{font-family:'Barlow Condensed';font-weight:600;text-transform:uppercase;letter-spacing:.2em;font-size:13px;color:#ffd7dd;margin-bottom:12px}
+  .top h1{font-size:clamp(34px,7vw,60px);font-weight:700;margin-bottom:14px}
+  .top p{max-width:52ch;font-size:clamp(16px,2vw,18px)}
+
+  .privacy{background:#fff;border:1px solid var(--line);border-left:5px solid var(--amber);padding:18px 22px;margin-top:36px;font-size:14.5px;color:var(--steel)}
+  .privacy strong{color:var(--ink)}
+
+  form{margin-top:32px}
+  fieldset{border:1px solid var(--line);padding:24px;margin-bottom:24px;background:var(--paper-2)}
+  legend{font-family:'Barlow Condensed';font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:18px;color:var(--ink);padding:0 10px}
+  .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px 20px}
+  .fld{display:flex;flex-direction:column;gap:5px}
+  .fld.full{grid-column:1/-1}
+  label{font-family:'Barlow Condensed';font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:14px;color:var(--steel)}
+  label .req{color:var(--red)}
+  input[type=text],input[type=date],input[type=email],input[type=tel]{
+    font-family:'Barlow',sans-serif;font-size:16px;padding:11px 13px;border:1.5px solid var(--line);background:#fff;color:var(--ink);width:100%}
+  input:focus{outline:3px solid var(--amber);outline-offset:1px;border-color:var(--ink)}
+  .hint{font-size:12.5px;color:#8a8f94}
+  .optional-toggle{font-family:'Barlow Condensed';font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:15px;color:var(--red);background:none;border:0;cursor:pointer;padding:6px 0}
+  .optional-body{display:none;margin-top:16px}
+  .optional-body.open{display:block}
+
+  .consent{display:flex;gap:12px;align-items:flex-start;margin-bottom:6px}
+  .consent input{margin-top:4px;width:20px;height:20px;flex:none;accent-color:var(--red)}
+  .consent label{font-family:'Barlow',sans-serif;text-transform:none;letter-spacing:0;font-size:14px;color:var(--steel);font-weight:400;line-height:1.5}
+
+  .actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-block:8px 48px}
+  .btn{display:inline-block;background:var(--red);color:#fff;text-decoration:none;font-family:'Barlow Condensed';font-weight:700;font-size:17px;text-transform:uppercase;letter-spacing:.05em;padding:14px 26px;border:2px solid var(--red);cursor:pointer;transition:.15s}
+  .btn:hover{background:var(--red-dark);border-color:var(--red-dark)}
+  .btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+  .btn.ghost:hover{background:var(--ink);color:#fff}
+  .err{color:var(--red);font-weight:600;font-size:14px;display:none;margin-top:6px}
+  .okmsg{color:#1a7f4b;font-weight:600;font-size:15px;display:none;margin-top:6px}
+
+  /* signature */
+  .sig-wrap{margin-top:14px}
+  .sig-canvas{width:100%;height:160px;background:#fff;border:1.5px solid var(--line);display:block;touch-action:none;cursor:crosshair}
+  .sig-clear{margin-top:8px;font-family:'Barlow Condensed';font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:14px;color:var(--steel);background:none;border:0;cursor:pointer;padding:0}
+  .sig-clear:hover{color:var(--red)}
+  .sig-err{color:var(--red);font-weight:600;font-size:14px;display:none;margin-top:6px}
+
+  /* print document */
+  .doc{display:none}
+  @media screen{.doc.preview{display:block;margin:30px auto 60px;background:#fff;border:1px solid var(--line);box-shadow:0 12px 40px rgba(0,0,0,.12);padding:46px;max-width:780px}}
+  .doc h2{font-size:24px;font-weight:700;margin-bottom:2px;text-transform:none}
+  .doc .org{font-size:13px;color:#555;margin-bottom:22px;line-height:1.5}
+  .doc table{width:100%;border-collapse:collapse;margin-bottom:20px;font-size:14px}
+  .doc th,.doc td{border:1px solid #999;padding:8px 10px;text-align:left;vertical-align:top}
+  .doc th{background:#f0f0f0;font-family:'Barlow Condensed';font-weight:600;text-transform:uppercase;letter-spacing:.03em;width:38%;color:#222}
+  .doc .decl{font-size:12.5px;line-height:1.55;margin:18px 0;color:#222;text-align:justify}
+  .doc .sign{display:flex;justify-content:space-between;gap:40px;margin-top:34px}
+  .doc .sign div{flex:1;border-top:1px solid #333;padding-top:6px;font-size:12px;color:#444;text-align:center}
+  .doc .vzo{margin-top:30px;border:1px dashed #aaa;padding:14px;font-size:11.5px;color:#888}
+  .doc .vzo b{display:block;color:#555;margin-bottom:6px;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+
+  @media print{
+    header,.top,.privacy,form,.actions,.back{display:none!important}
+    body{background:#fff}
+    .doc{display:block!important;padding:0;border:0;box-shadow:none;max-width:100%}
+    .wrap{padding:0}
+    @page{margin:18mm}
+  }
+
+  footer{background:#101214;color:#7f888e;padding-block:28px;font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  footer strong{color:#c9ccce}
+  @media print{footer{display:none}}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <a class="brand" href="index.html" aria-label="Domů">
+      <svg class="cog" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
+        <path d="M50 8l6 12 13-4 1 13 13 3-7 11 7 11-13 3-1 13-13-4-6 12-6-12-13 4-1-13-13-3 7-11-7-11 13-3 1-13 13 4z"/>
+        <circle cx="50" cy="50" r="15" fill="#F5F3EF"/><circle cx="50" cy="50" r="6" fill="currentColor"/>
+      </svg>
+      <span class="name">OS KOVO Tréves<small>Základní organizace</small></span>
+    </a>
+    <a class="back" href="index.html">← Zpět na web</a>
+  </div>
+</header>
+
+<section class="top">
+  <div class="wrap">
+    <p class="eyebrow">Přihláška online</p>
+    <h1>Vyplň přihlášku</h1>
+    <p>Vyplň údaje, podepiš se prstem nebo myší a odešli — hotovo za pár minut. Ozveme se ti a dotáhneme evidenci.</p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <div class="privacy">
+    <strong>Jak to funguje:</strong> vyplníš údaje, podepíšeš se přímo na obrazovce a přihlášku odešleš tlačítkem. Přijde nám e-mailem jako podepsané PDF. Nechceš-li nic odesílat online, můžeš si přihlášku vytisknout a předat osobně. Podrobnosti v <a href="zasady.html" style="color:var(--red)">Zásadách ochrany osobních údajů</a>.
+  </div>
+
+  <form id="f" novalidate>
+    <fieldset>
+      <legend>Osobní údaje</legend>
+      <div class="row">
+        <div class="fld"><label for="prijmeni">Příjmení <span class="req">*</span></label><input type="text" id="prijmeni" autocomplete="family-name"></div>
+        <div class="fld"><label for="jmeno">Jméno <span class="req">*</span></label><input type="text" id="jmeno" autocomplete="given-name"></div>
+        <div class="fld"><label for="titul">Titul</label><input type="text" id="titul"></div>
+        <div class="fld"><label for="narozeni">Datum narození <span class="req">*</span></label><input type="date" id="narozeni"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Adresa</legend>
+      <div class="row">
+        <div class="fld full"><label for="ulice">Ulice a číslo popisné <span class="req">*</span></label><input type="text" id="ulice" autocomplete="street-address"></div>
+        <div class="fld"><label for="mesto">Město <span class="req">*</span></label><input type="text" id="mesto"></div>
+        <div class="fld"><label for="psc">PSČ <span class="req">*</span></label><input type="text" id="psc" inputmode="numeric" autocomplete="postal-code"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Kontakt</legend>
+      <div class="row">
+        <div class="fld"><label for="tel">Telefon / mobil <span class="req">*</span></label><input type="tel" id="tel" autocomplete="tel"></div>
+        <div class="fld"><label for="email">E-mail <span class="req">*</span></label><input type="email" id="email" autocomplete="email"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Přechod z jiné organizace</legend>
+      <button type="button" class="optional-toggle" onclick="document.getElementById('opt').classList.toggle('open');this.textContent=document.getElementById('opt').classList.contains('open')?'− Skrýt (vyplň jen při přechodu z jiné ZO)':'+ Vyplňuji jen při přechodu z jiné ZO / jiného svazu'">+ Vyplňuji jen při přechodu z jiné ZO / jiného svazu</button>
+      <div class="optional-body" id="opt">
+        <div class="row">
+          <div class="fld full"><label for="zo1">Původní ZO OS KOVO (název a číslo organizace)</label><input type="text" id="zo1"></div>
+          <div class="fld full"><label for="zo2">ZO jiného odborového svazu (název a číslo ZO, název OS)</label><input type="text" id="zo2"></div>
+          <div class="fld"><label for="roky">Započítaná doba členství — roků</label><input type="text" id="roky" inputmode="numeric"></div>
+          <div class="fld"><label for="mesice">Měsíců</label><input type="text" id="mesice" inputmode="numeric"></div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Podpis</legend>
+      <div class="sig-wrap">
+        <canvas id="sigCanvas" class="sig-canvas"></canvas>
+        <button type="button" class="sig-clear" onclick="clearSig()">× Vymazat podpis</button>
+        <p class="sig-err" id="sigErr">Přidej prosím svůj podpis.</p>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Souhlas</legend>
+      <div class="consent">
+        <input type="checkbox" id="souhlas">
+        <label for="souhlas">Přihlašuji se za člena Odborového svazu KOVO a zavazuji se plnit povinnosti vyplývající ze Stanov OS KOVO, zejména platit stanovený měsíční členský příspěvek. Uděluji souhlas OS KOVO a ZO OS KOVO Tréves se zpracováním svých osobních údajů podle Nařízení (EU) 2016/679 (GDPR) a zákona o zpracování osobních údajů, a to za účelem evidence člena v OS KOVO. <span class="req">*</span></label>
+      </div>
+      <p class="err" id="errBox">Vyplň prosím všechna povinná pole označená * a zaškrtni souhlas.</p>
+    </fieldset>
+
+    <p style="font-size:14px;color:var(--steel);margin-bottom:12px">Nejjednodušší cesta: podepiš se výše a klikni na Odeslat podepsanou přihlášku. Tisk je záloha, kdyby ti odeslání nefungovalo.</p>
+    <div class="actions">
+      <button type="button" class="btn ghost" onclick="generate()">Vytvořit přihlášku</button>
+      <button type="button" class="btn" onclick="odeslatPodepsanou()" id="sendSignedBtn">Odeslat podepsanou přihlášku</button>
+      <button type="button" class="btn ghost" onclick="window.print()" id="printBtn">Vytisknout / uložit PDF</button>
+    </div>
+    <p class="err" id="sendErr"></p>
+    <p class="okmsg" id="sendOk">Přihláška odeslána. Brzy se ti ozveme a dotáhneme evidenci členství.</p>
+  </form>
+
+  <!-- PRINTABLE DOCUMENT -->
+  <div class="doc" id="doc">
+    <h2>Přihláška a evidenční list člena</h2>
+    <p class="org">
+      Odborový svaz KOVO · Základní organizace OS KOVO Tréves<br>
+      Zaměstnavatel: Tréves CZ s.r.o., Přestanov 116, 403 17 Přestanov<br>
+      IČ organizace: 238 23 470 · číslo organizace: 03-3267-1521
+    </p>
+    <table>
+      <tr><th>Příjmení</th><td id="d_prijmeni"></td></tr>
+      <tr><th>Jméno</th><td id="d_jmeno"></td></tr>
+      <tr><th>Titul</th><td id="d_titul"></td></tr>
+      <tr><th>Datum narození</th><td id="d_narozeni"></td></tr>
+      <tr><th>Ulice a č. p.</th><td id="d_ulice"></td></tr>
+      <tr><th>Město</th><td id="d_mesto"></td></tr>
+      <tr><th>PSČ</th><td id="d_psc"></td></tr>
+      <tr><th>Telefon / mobil</th><td id="d_tel"></td></tr>
+      <tr><th>E-mail</th><td id="d_email"></td></tr>
+      <tr id="r_zo1"><th>Původní ZO OS KOVO</th><td id="d_zo1"></td></tr>
+      <tr id="r_zo2"><th>ZO jiného OS</th><td id="d_zo2"></td></tr>
+      <tr id="r_doba"><th>Započítaná doba členství</th><td id="d_doba"></td></tr>
+    </table>
+
+    <p class="decl">Přihlašuji se za člena Odborového svazu KOVO a zavazuji se plnit své povinnosti vyplývající ze Stanov OS KOVO, zejména platit stanovený měsíční členský příspěvek dle Stanov OS KOVO. Uděluji souhlas OS KOVO a ZO OS KOVO Tréves ke zpracování osobních údajů podle Nařízení Evropského parlamentu a Rady (EU) 2016/679 (GDPR) a podle zákona o zpracování osobních údajů, a to za účelem evidence člena v OS KOVO.</p>
+
+    <div class="sign">
+      <div>Datum: <span id="d_datum"></span></div>
+      <div style="border-top:none;padding-top:0">
+        <div style="border-top:none;min-height:65px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:5px;border-bottom:1px solid #333">
+          <img id="d_podpis_img" alt="podpis" style="height:60px;max-width:90%;display:none">
+        </div>
+        <div style="border-top:none;padding-top:6px;text-align:center">Podpis člena</div>
+        <div id="d_epodpis_note" style="border-top:none;font-size:10px;color:#888;text-align:center;margin-top:3px;display:none">Podepsáno elektronicky přes ostreves.cz dne <span id="d_epodpis_datum"></span></div>
+      </div>
+    </div>
+
+    <div class="vzo">
+      <b>Vyplňuje VZO</b>
+      Přihláška projednána ve VZO dne: __________ · Zaevidována dne: __________ · Způsob / poznámka: ____________________________
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div><strong>ZO OS KOVO Tréves</strong> — Tréves CZ s.r.o., Přestanov 116, 403 17 Přestanov</div>
+    <div>IČ: 238 23 470 · <a href="zasady.html" style="color:#9aa3a9">Zásady ochrany osobních údajů</a></div>
+  </div>
+</footer>
+
+<script>
+  function val(id){return (document.getElementById(id).value||'').trim();}
+  function set(id,v){document.getElementById(id).textContent = v || '—';}
+
+  function generate(){
+    var req = ['prijmeni','jmeno','narozeni','ulice','mesto','psc','tel','email'];
+    var ok = req.every(function(id){return val(id)!=='';}) && document.getElementById('souhlas').checked;
+    var em = val('email');
+    if(em && em.indexOf('@')===-1) ok=false;
+    if(!ok){
+      document.getElementById('errBox').style.display='block';
+      window.scrollTo({top:document.getElementById('errBox').offsetTop-200,behavior:'smooth'});
+      return false;
+    }
+    document.getElementById('errBox').style.display='none';
+
+    set('d_prijmeni',val('prijmeni'));
+    set('d_jmeno',val('jmeno'));
+    set('d_titul',val('titul'));
+    set('d_narozeni',formatDate(val('narozeni')));
+    set('d_ulice',val('ulice'));
+    set('d_mesto',val('mesto'));
+    set('d_psc',val('psc'));
+    set('d_tel',val('tel'));
+    set('d_email',val('email'));
+
+    toggleRow('r_zo1','d_zo1',val('zo1'));
+    toggleRow('r_zo2','d_zo2',val('zo2'));
+    var doba = (val('roky')||val('mesice')) ? (val('roky')||'0')+' r. '+(val('mesice')||'0')+' měs.' : '';
+    toggleRow('r_doba','d_doba',doba);
+
+    var t=new Date();
+    set('d_datum', String(t.getDate()).padStart(2,'0')+'. '+String(t.getMonth()+1).padStart(2,'0')+'. '+t.getFullYear());
+
+    var docEl=document.getElementById('doc');
+    docEl.classList.add('preview');
+    document.getElementById('printBtn').style.display='inline-block';
+    window.scrollTo({top:docEl.offsetTop-90,behavior:'smooth'});
+    return true;
+  }
+
+  function toggleRow(rowId,cellId,value){
+    var row=document.getElementById(rowId);
+    if(value){row.style.display='';document.getElementById(cellId).textContent=value;}
+    else{row.style.display='none';}
+  }
+
+  function formatDate(iso){
+    if(!iso) return '—';
+    var p=iso.split('-');
+    if(p.length!==3) return iso;
+    return p[2]+'. '+p[1]+'. '+p[0];
+  }
+
+  /* ---- PODPIS ---- */
+  var sigCanvas = document.getElementById('sigCanvas');
+  var sigCtx    = sigCanvas.getContext('2d');
+  var isDrawing = false;
+  var sigDrawn  = false;
+
+  (function initSig(){
+    sigCanvas.width  = sigCanvas.offsetWidth || 600;
+    sigCanvas.height = 160;
+    sigCtx.lineWidth   = 2;
+    sigCtx.strokeStyle = '#111';
+    sigCtx.lineCap     = 'round';
+    sigCtx.lineJoin    = 'round';
+  })();
+
+  function getSigPos(e){
+    var rect = sigCanvas.getBoundingClientRect();
+    var src  = e.touches ? e.touches[0] : e;
+    return {
+      x: (src.clientX - rect.left) * (sigCanvas.width  / rect.width),
+      y: (src.clientY - rect.top)  * (sigCanvas.height / rect.height)
+    };
+  }
+
+  sigCanvas.addEventListener('mousedown', function(e){
+    isDrawing = true;
+    var p = getSigPos(e); sigCtx.beginPath(); sigCtx.moveTo(p.x, p.y);
+  });
+  sigCanvas.addEventListener('mousemove', function(e){
+    if(!isDrawing) return;
+    var p = getSigPos(e); sigCtx.lineTo(p.x, p.y); sigCtx.stroke(); sigDrawn = true;
+  });
+  sigCanvas.addEventListener('mouseup',    function(){ isDrawing = false; });
+  sigCanvas.addEventListener('mouseleave', function(){ isDrawing = false; });
+
+  sigCanvas.addEventListener('touchstart', function(e){
+    e.preventDefault(); isDrawing = true;
+    var p = getSigPos(e); sigCtx.beginPath(); sigCtx.moveTo(p.x, p.y);
+  }, {passive: false});
+  sigCanvas.addEventListener('touchmove', function(e){
+    e.preventDefault();
+    if(!isDrawing) return;
+    var p = getSigPos(e); sigCtx.lineTo(p.x, p.y); sigCtx.stroke(); sigDrawn = true;
+  }, {passive: false});
+  sigCanvas.addEventListener('touchend', function(e){
+    e.preventDefault(); isDrawing = false;
+  }, {passive: false});
+
+  function clearSig(){
+    sigCtx.clearRect(0, 0, sigCanvas.width, sigCanvas.height);
+    sigDrawn = false;
+  }
+
+  /* ---- ODESLAT PODEPSANOU PŘIHLÁŠKU ---- */
+  async function odeslatPodepsanou(){
+    var req = ['prijmeni','jmeno','narozeni','ulice','mesto','psc','tel','email'];
+    var ok  = req.every(function(id){return val(id)!=='';}) && document.getElementById('souhlas').checked;
+    var em  = val('email');
+    if(em && em.indexOf('@')===-1) ok = false;
+
+    var errEl  = document.getElementById('errBox');
+    var sigErr = document.getElementById('sigErr');
+    var sErr   = document.getElementById('sendErr');
+    var sOk    = document.getElementById('sendOk');
+    sOk.style.display = 'none'; sErr.style.display = 'none';
+
+    if(!ok){
+      errEl.style.display = 'block';
+      errEl.scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+    errEl.style.display = 'none';
+
+    if(!sigDrawn){
+      sigErr.style.display = 'block';
+      sigErr.scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+    sigErr.style.display = 'none';
+
+    var btn = document.getElementById('sendSignedBtn');
+    btn.disabled = true; btn.textContent = 'Odesílám…';
+
+    generate();
+
+    var sigImg = document.getElementById('d_podpis_img');
+    sigImg.src = sigCanvas.toDataURL('image/png');
+    sigImg.style.display = 'block';
+
+    document.getElementById('d_epodpis_datum').textContent = document.getElementById('d_datum').textContent;
+    document.getElementById('d_epodpis_note').style.display = 'block';
+
+    await new Promise(function(r){ setTimeout(r, 150); });
+
+    try{
+      var docEl = document.getElementById('doc');
+
+      // Nastaví pevnou A4 šířku — obsah se pak vejde celý bez závislosti na displeje
+      var savedWidth = docEl.style.width;
+      docEl.style.width = '794px';
+      await new Promise(function(r){ setTimeout(r, 80); });
+
+      var c = await html2canvas(docEl, {scale:1.25, backgroundColor:'#ffffff', useCORS:true, logging:false});
+      docEl.style.width = savedWidth;
+
+      var jsPDF   = window.jspdf.jsPDF;
+      var mmPageW = 210;
+      var mmPageH = 297;
+      var cW      = c.width;
+      var pageHpx = Math.round(cW * (mmPageH / mmPageW)); // výška A4 v px canvasu
+
+      function buildPdf(quality){
+        var p      = new jsPDF({orientation:'portrait', unit:'mm', format:'a4'});
+        var totalH = c.height;
+        var pages  = Math.ceil(totalH / pageHpx);
+        for(var i = 0; i < pages; i++){
+          if(i > 0) p.addPage();
+          var sliceH  = Math.min(pageHpx, totalH - i * pageHpx);
+          var slice   = document.createElement('canvas');
+          slice.width  = cW;
+          slice.height = sliceH;
+          slice.getContext('2d').drawImage(c, 0, i * pageHpx, cW, sliceH, 0, 0, cW, sliceH);
+          var sliceImg  = slice.toDataURL('image/jpeg', quality);
+          var slicePdfH = mmPageW * (sliceH / cW);
+          p.addImage(sliceImg, 'JPEG', 0, 0, mmPageW, slicePdfH);
+        }
+        return p.output('datauristring').split(',')[1];
+      }
+
+      var pdfBase64 = buildPdf(0.8);
+      if(pdfBase64.length > 4500000){ pdfBase64 = buildPdf(0.6); }
+
+      var resp = await fetch('/api/prihlaska', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          pdfBase64: pdfBase64,
+          jmeno:    val('jmeno'),
+          prijmeni: val('prijmeni'),
+          email:    val('email'),
+          tel:      val('tel')
+        })
+      });
+
+      var data = await resp.json().catch(function(){ return {}; });
+      if(!resp.ok || !data.ok) throw new Error(data.error || ('HTTP ' + resp.status));
+
+      sOk.textContent = 'Přihláška odeslána, ozveme se ti.';
+      sOk.style.display = 'block';
+      sOk.scrollIntoView({behavior:'smooth', block:'center'});
+
+    }catch(e){
+      sErr.innerHTML = 'Odeslání se nepovedlo (' + (e.message||'neznámá chyba') + '). '
+        + 'Vytiskni si přihlášku nebo nás kontaktuj na '
+        + '<a href="mailto:menffisto@gmail.com" style="color:var(--red)">menffisto@gmail.com</a>.';
+      sErr.style.display = 'block';
+    }
+
+    btn.disabled = false; btn.textContent = 'Odeslat podepsanou přihlášku';
+  }
+</script>
+</body>
+</html>
